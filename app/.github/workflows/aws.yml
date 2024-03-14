@@ -6,7 +6,7 @@ on:
 env:
   AWS_REGION: us-east-1
   ECS_CLUSTER: vortex-dev-ecs
-  CONTAINER_NAME: app
+  CONTAINER_NAME: test-app
   ECS_SERVICE: vortex-dev-service
   ECS_TD: .github/workflows/td.json
 
