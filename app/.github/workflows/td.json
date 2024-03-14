@@ -1,56 +1,97 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:us-east-2:***:task-definition/app",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:292029882946:task-definition/vortex-dev-service",
   "containerDefinitions": [
-    {
-      "name": "app",
-      "image": "***.dkr.ecr.us-east-2.amazonaws.com/app_repo",
-      "cpu": 256,
-      "memory": 512,
-      "portMappings": [
-        {
-          "containerPort": 80,
-          "hostPort": 80,
-          "protocol": "tcp"
-        }
-      ],
-      "essential": true,
-      "environment": [],
-      "mountPoints": [],
-      "volumesFrom": []
-    }
+      {
+          "name": "vortex-dev-container",
+          "image": "292029882946.dkr.ecr.us-east-1.amazonaws.com/vortex-dev-ecr",
+          "cpu": 512,
+          "memory": 1024,
+          "portMappings": [
+              {
+                  "name": "vortex-dev-container",
+                  "containerPort": 80,
+                  "hostPort": 80,
+                  "protocol": "tcp"
+              }
+          ],
+          "essential": true,
+          "environment": [],
+          "mountPoints": [],
+          "volumesFrom": [],
+          "linuxParameters": {
+              "initProcessEnabled": false
+          },
+          "startTimeout": 30,
+          "stopTimeout": 120,
+          "user": "0",
+          "privileged": false,
+          "readonlyRootFilesystem": true,
+          "interactive": false,
+          "pseudoTerminal": false,
+          "systemControls": []
+      }
   ],
-  "family": "app",
-  "taskRoleArn": "arn:aws:iam::***:role/ecsTaskExecutionRole",
-  "executionRoleArn": "arn:aws:iam::***:role/ecsTaskExecutionRole",
+  "family": "vortex-dev-service",
+  "taskRoleArn": "arn:aws:iam::292029882946:role/vortex-dev-service-20240314114450940700000003",
+  "executionRoleArn": "arn:aws:iam::292029882946:role/vortex-dev-service-20240314114450940400000002",
   "networkMode": "awsvpc",
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
-    {
-      "name": "com.amazonaws.ecs.capability.ecr-auth"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.task-iam-role"
-    },
-    {
-      "name": "ecs.capability.execution-role-ecr-pull"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-    },
-    {
-      "name": "ecs.capability.task-eni"
-    }
+      {
+          "name": "com.amazonaws.ecs.capability.ecr-auth"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.task-iam-role"
+      },
+      {
+          "name": "ecs.capability.container-ordering"
+      },
+      {
+          "name": "ecs.capability.execution-role-ecr-pull"
+      },
+      {
+          "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+      },
+      {
+          "name": "ecs.capability.task-eni"
+      }
   ],
   "placementConstraints": [],
   "compatibilities": [
-    "EC2",
-    "FARGATE"
+      "EC2",
+      "FARGATE"
   ],
   "requiresCompatibilities": [
-    "FARGATE"
+      "FARGATE"
   ],
-  "cpu": "256",
-  "memory": "512",
-  "registeredBy": "arn:aws:iam::***:user/antonio"
+  "cpu": "1024",
+  "memory": "4096",
+  "runtimePlatform": {
+      "cpuArchitecture": "X86_64",
+      "operatingSystemFamily": "LINUX"
+  },
+  "registeredAt": "2024-03-14T11:47:26.235Z",
+  "registeredBy": "arn:aws:sts::292029882946:assumed-role/AWSReservedSSO_AdministratorAccess_4395f93179006b3a/yairhay@cloudzone.io",
+  "tags": [
+      {
+          "key": "owner",
+          "value": "devops"
+      },
+      {
+          "key": "project",
+          "value": "vortex"
+      },
+      {
+          "key": "env",
+          "value": "dev"
+      },
+      {
+          "key": "created_by",
+          "value": "terraform"
+      }
+  ]
 }
