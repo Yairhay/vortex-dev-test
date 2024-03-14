@@ -33,7 +33,7 @@ jobs:
       - name: Print directory contents
         run: |
           pwd
-          ls -l
+          ls 
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
         env:
