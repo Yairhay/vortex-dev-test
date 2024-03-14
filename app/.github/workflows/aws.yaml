@@ -30,6 +30,10 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
+      - name: Print directory contents
+        run: |
+          pwd
+          ls -l
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
         env:
@@ -37,7 +41,6 @@ jobs:
           ECR_REPOSITORY: "vortex-dev-ecr"
           IMAGE_TAG: latest
         run: |
-          ls -l
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ..
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
