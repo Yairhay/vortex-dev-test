@@ -72,7 +72,7 @@
         "FARGATE"
     ],
     "requiresCompatibilities": [
-        "FARGATE"
+        "EC2"
     ],
     "cpu": "1024",
     "memory": "4096",
@@ -80,7 +80,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-03-17T10:09:25.377Z",
+    "registeredAt": "2024-03-17T14:57:31.883Z",
     "registeredBy": "arn:aws:sts::292029882946:assumed-role/AWSReservedSSO_AdministratorAccess_4395f93179006b3a/yairhay@cloudzone.io",
     "tags": [
         {
