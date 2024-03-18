@@ -4,19 +4,19 @@
         {
             "name": "vortex-dev-container",
             "image": "292029882946.dkr.ecr.us-east-1.amazonaws.com/vortex-dev-ecr",
-            "cpu": 512,
-            "memory": 1024,
+            "cpu": 10,
+            "memory": 512,
             "portMappings": [
                 {
                     "name": "vortex-dev-container",
                     "containerPort": 80,
-                    "hostPort": 80,
+                    "hostPort": 0,
                     "protocol": "tcp"
                 },
                 {
                     "name": "test443",
                     "containerPort": 443,
-                    "hostPort": 443,
+                    "hostPort": 0,
                     "protocol": "tcp"
                 }
             ],
@@ -31,7 +31,7 @@
             "stopTimeout": 120,
             "user": "0",
             "privileged": false,
-            "readonlyRootFilesystem": true,
+            "readonlyRootFilesystem": false,
             "interactive": false,
             "pseudoTerminal": false,
             "systemControls": []
@@ -40,13 +40,29 @@
     "family": "vortex-dev-service",
     "taskRoleArn": "arn:aws:iam::292029882946:role/vortex-dev-service-20240314114450940700000003",
     "executionRoleArn": "arn:aws:iam::292029882946:role/vortex-dev-service-20240314114450940400000002",
-    "networkMode": "awsvpc",
+    "networkMode": "bridge",
     "volumes": [],
     "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.container-ordering"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        }
+    ],
     "placementConstraints": [],
     "compatibilities": [
-        "EC2",
-        "FARGATE"
+        "EC2"
     ],
     "requiresCompatibilities": [
         "EC2"
@@ -57,7 +73,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-03-17T14:57:31.883Z",
+    "registeredAt": "2024-03-18T11:00:38.001Z",
     "registeredBy": "arn:aws:sts::292029882946:assumed-role/AWSReservedSSO_AdministratorAccess_4395f93179006b3a/yairhay@cloudzone.io",
     "tags": [
         {
